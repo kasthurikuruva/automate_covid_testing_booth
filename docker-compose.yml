@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: atbd
+    ports:
+        - 8000:8000
+    volumes:
+      - ./atbd/:/usr/src/atbd/
+  db:
+    image: postgres:14.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=masteratbd
+      - POSTGRES_PASSWORD=9110564186
+      - POSTGRES_DB=atbd
+
+volumes:
+  postgres_data:
